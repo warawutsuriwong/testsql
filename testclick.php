@@ -24,7 +24,7 @@
 
     // echo $obj->{'customer_id'};
     // echo $obj->{'username'}
-// xvgsdfh
+    
     //$customer_id = $obj->{'customer_id'};
     //รับค่ามาใส่ตัวแปร
     $username = $obj->{'username'};
