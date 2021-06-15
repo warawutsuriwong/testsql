@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Register</title>
+  </head>
+  <body>
+    <h1>Week1</h1>
+
+    <!-- สร้างช่องไว้กรอกข้อมูล -->
+    <div>
+      <label>Username :</label>
+      <input type="text" name="username" id="username" />
+    </div>
+
+    <div>
+      <label>Password :</label>
+      <input type="password" name="password" id="password" />
+    </div>
+
+    <div>
+      <label>Name :</label>
+      <input type="text" name="name" id="name" />
+    </div>
+
+    <div>
+      <label>Tel. :</label>
+      <input type="number" name="tel" id="tel" />
+    </div>
+
+    <div>
+      <label>Country :</label>
+      <input type="text" name="country" id="country" />
+    </div>
+
+    <div>
+      <input type="button" name="btnSend" id="btnSend" value="Send" />
+      <input
+        type="button"
+        class="btn btn-primary"
+        name="reset"
+        id="reset"
+        value="Reset"
+      />
+    </div>
+
+    <button type="button" class="btn btn-primary">Primary</button>
+
+    <script type="text/javascript">
+      // สิ่งที่เกิดขึ้นเมื่อคลิ๊ก
+      $(document).ready(function () {
+        $("#btnSend").click(function () {
+          // let customerId = $('#customer_id').val()
+          let username = $("#username").val();
+          let password = $("#password").val();
+          let name = $("#name").val();
+          let tel = $("#tel").val();
+          let country = $("#country").val();
+
+          if (username != "" && password != "" && name != "") {
+            // เตรียมข้อมูลไว้แปลงเป็นJSON
+            let obj = {
+              //customer_id: customerId,
+              username: username,
+              password: password,
+              name: name,
+              tel: tel,
+              country: country,
+            };
+            // แปลงเป็นstring
+            var json = JSON.stringify(obj);
+
+            $.ajax({
+              type: "POST",
+              url: "testclick.php",
+              dataType: "json",
+              data: { json: json },
+              success: function (result) {
+                // console.log(result);
+                alert("บันทึกข้อมูลเสร็จสิ้น");
+              },
+            });
+          } else {
+            alert("กรอกข้อมูลไม่ครบ");
+          }
+        });
+        // คลิ๊กแล้วreset
+        $("#reset").click(function () {
+          // document.getElementById("customer_id").value = ""
+          document.getElementById("username").value = "";
+          document.getElementById("password").value = "";
+          document.getElementById("name").value = "";
+          document.getElementById("tel").value = "";
+          document.getElementById("country").value = "";
+        });
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
